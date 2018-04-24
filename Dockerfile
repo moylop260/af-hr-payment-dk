@@ -17,8 +17,12 @@ RUN apt-get update \
   && echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' >> /etc/apt/sources.list.d/pgdg.list \
   && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
   && apt-get update \
-  && apt-get install -y postgresql-10 postgresql-server-dev-10
-RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ")
+  && apt-get install -y postgresql-10 postgresql-server-dev-10 \
+  && apt-get install -y tmux
+RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ") \
+    && npm install -g less \
+    && wget https://downloads.wkhtmltopdf.org/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wk.deb \
+    && dpkg -i /tmp/wk.deb; apt-get install -yf && dpkg -i /tmp/wk.deb
 RUN pip install -U pip \
   && python2.7 -m pip install -Ur /tmp/pip_requirements.txt
 RUN useradd -d "/home/odoo" -m -s "/bin/bash" "odoo" \

@@ -23,4 +23,7 @@ RUN pip install -U pip \
   && python2.7 -m pip install -Ur /tmp/pip_requirements.txt
 RUN useradd -d "/home/odoo" -m -s "/bin/bash" "odoo" \
   && su - odoo -c "git config --global user.name odoo" \
-  && su - odoo -c "git config --global user.email odoo@email.com"
+  && su - odoo -c "git config --global user.email odoo@email.com" \
+  && /etc/init.d/postgresql start 10 \
+  && su - postgres -c "createuser -s odoo" \
+  && su - odoo -c "git clone https://github.com/odoo/odoo.git -b 9.0 --single-branch ~/odoo-repo"

@@ -21,3 +21,6 @@ RUN apt-get update \
 RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ")
 RUN pip install -U pip \
   && python2.7 -m pip install -Ur /tmp/pip_requirements.txt
+RUN useradd -d "/home/odoo" -m -s "/bin/bash" "odoo" \
+  && su - odoo -c "git config --global user.name odoo" \
+  && su - odoo -c "git config --global user.email odoo@email.com"

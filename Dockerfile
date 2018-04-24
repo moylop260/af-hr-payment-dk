@@ -17,7 +17,7 @@ RUN apt-get update \
   && echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' >> /etc/apt/sources.list.d/pgdg.list \
   && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
   && apt-get update \
-  && apt-get install -y postgresql-10
+  && apt-get install -y postgresql-10 postgresql-server-dev-10
 RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ")
 RUN pip install -U pip \
   && python2.7 -m pip install -Ur /tmp/pip_requirements.txt

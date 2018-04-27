@@ -776,13 +776,13 @@ policykit-1
 poppler-data
 poppler-utils
 popularity-contest
-postgresql
-postgresql-9.5
-postgresql-client
-postgresql-client-9.5
-postgresql-client-common
-postgresql-common
-postgresql-contrib-9.5
+# postgresql
+# postgresql-9.5
+# postgresql-client
+# postgresql-client-9.5
+# postgresql-client-common
+# postgresql-common
+# postgresql-contrib-9.5
 powermgmt-base
 procps
 psmisc

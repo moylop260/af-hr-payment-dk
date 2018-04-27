@@ -18,7 +18,7 @@ RUN apt-get update \
   && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
   && apt-get update \
   && apt-get install -y postgresql-10 postgresql-server-dev-10 \
-  postgresql-client postgresql-client-common postgresql-common postgresql-contrib \
+  postgresql-client-10 postgresql-client-common postgresql-common postgresql-contrib \
   && apt-get install -y tmux
 RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ") \
     && npm install -g less \

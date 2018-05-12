@@ -27,7 +27,7 @@ RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " 
     && dpkg -i /tmp/wk.deb; apt-get install -yf && dpkg -i /tmp/wk.deb
 RUN pip install -U pip \
   && python2.7 -m pip install -Ur /tmp/pip_requirements.txt \
-  && python2.7 -m pip install -U gevent==1.0.2 pstats_print2list
+  && python2.7 -m pip install -U gevent==1.0.2 psycogreen==1.0 pstats_print2list
 RUN useradd -d "/home/odoo" -m -s "/bin/bash" "odoo" \
   && su - odoo -c "git config --global user.name odoo" \
   && su - odoo -c "git config --global user.email odoo@email.com" \

@@ -22,7 +22,7 @@ RUN apt-get update \
   postgresql-plpython-10 \
   tmux
 RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ") \
-    && npm install -g less \
+    && npm install -g less clean-css \
     && wget https://downloads.wkhtmltopdf.org/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wk.deb \
     && dpkg -i /tmp/wk.deb; apt-get install -yf && dpkg -i /tmp/wk.deb
 RUN pip install -U pip \

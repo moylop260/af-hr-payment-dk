@@ -19,7 +19,8 @@ RUN apt-get update \
   && apt-get update \
   && apt-get install -y postgresql-10 postgresql-server-dev-10 \
   postgresql-client-10 postgresql-client-common postgresql-common postgresql-contrib \
-  && apt-get install -y tmux
+  postgresql-plpython-10 \
+  tmux
 RUN apt-get install -y $(grep -vE "^\s*#" /tmp/apk_requirements.txt | tr "\n" " ") \
     && npm install -g less \
     && wget https://downloads.wkhtmltopdf.org/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb -O /tmp/wk.deb \
@@ -30,5 +31,4 @@ RUN useradd -d "/home/odoo" -m -s "/bin/bash" "odoo" \
   && su - odoo -c "git config --global user.name odoo" \
   && su - odoo -c "git config --global user.email odoo@email.com" \
   && /etc/init.d/postgresql start 10 \
-  && su - postgres -c "createuser -s odoo" \
-  && su - odoo -c "git clone https://github.com/odoo/odoo.git -b 9.0 --single-branch ~/odoo-repo"
+  && su - postgres -c "createuser -s odoo"
